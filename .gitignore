@@ -1,0 +1,21 @@
+# Node & dependencies
+node_modules/
+.npm/
+
+# Vercel
+.vercel/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Temporary / Scratch files
+isi-website.txt
+*.log
+
+# IDE
+.vscode/
+.idea/

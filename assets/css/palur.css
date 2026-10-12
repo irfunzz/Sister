@@ -1,0 +1,577 @@
+/**
+ * Custom Stylesheet: Portal Resmi Desa Palur, Mojolaban, Sukoharjo
+ * Extends BootstrapMade HeroBiz / BizLand Theme
+ * Palette: Forest Emerald (#166534, #15803d), Gold (#c59b27, #d97706), Slate (#0f172a)
+ */
+
+:root {
+  --palur-primary: #166534;
+  --palur-primary-dark: #14532d;
+  --palur-primary-light: #22c55e;
+  --palur-emerald: #15803d;
+  --palur-emerald-soft: #f0fdf4;
+  --palur-gold: #c59b27;
+  --palur-gold-dark: #b45309;
+  --palur-gold-light: #fef3c7;
+  --palur-dark: #0f172a;
+  --palur-slate: #334155;
+  --palur-muted: #64748b;
+  --palur-light: #f8fafc;
+  --palur-border: #e2e8f0;
+  
+  /* Override template color tokens */
+  --accent-color: #15803d;
+  --heading-color: #14532d;
+  --default-color: #1e293b;
+  --nav-color: #1e293b;
+  --nav-hover-color: #15803d;
+  --nav-dropdown-color: #1e293b;
+  --nav-dropdown-hover-color: #15803d;
+}
+
+/* Announcement Topbar & Marquee */
+.topbar-gov {
+  background: var(--palur-primary-dark);
+  color: #ffffff;
+  font-size: 0.85rem;
+  padding: 6px 0;
+  border-bottom: 2px solid var(--palur-gold);
+}
+.topbar-gov a {
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.topbar-gov a:hover {
+  color: #fef08a;
+}
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  background: #0f3d20;
+  color: #fef9c3;
+  padding: 5px 0;
+  font-size: 0.825rem;
+  border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+}
+.marquee-text {
+  display: inline-block;
+  animation: marquee-scroll 32s linear infinite;
+  padding-left: 100%;
+}
+@keyframes marquee-scroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* Header & Brand Identity */
+.header .logo img {
+  max-height: 48px;
+  margin-right: 12px;
+}
+.header .sitename {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--palur-primary-dark);
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+.header .sitename-sub {
+  font-size: 0.75rem;
+  color: var(--palur-muted);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* Navigation enhancements */
+.navmenu ul li a {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.navmenu ul li a.active,
+.navmenu ul li a:hover {
+  color: var(--palur-emerald);
+}
+.btn-getstarted,
+.btn-portal-primary {
+  background: var(--palur-emerald);
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 6px;
+  border: 1px solid var(--palur-emerald);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-getstarted:hover,
+.btn-portal-primary:hover {
+  background: var(--palur-primary-dark);
+  border-color: var(--palur-primary-dark);
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(20, 83, 45, 0.25);
+  transform: translateY(-1px);
+}
+.btn-portal-outline {
+  background: transparent;
+  color: var(--palur-primary) !important;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 2px solid var(--palur-primary);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-portal-outline:hover {
+  background: var(--palur-primary);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* Hero Section */
+.hero-palur {
+  position: relative;
+  background: linear-gradient(135deg, rgba(20, 83, 45, 0.92) 0%, rgba(15, 61, 32, 0.88) 100%),
+              url('../img/palur/sawah2.jpg') center center / cover no-repeat;
+  color: #ffffff;
+  padding: 90px 0 100px;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+}
+.hero-palur h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+}
+.hero-palur h1 span {
+  color: #fde047;
+}
+.hero-palur p.lead-hero {
+  font-size: 1.15rem;
+  color: #f1f5f9;
+  line-height: 1.7;
+}
+.hero-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(254, 240, 138, 0.18);
+  border: 1px solid rgba(254, 240, 138, 0.5);
+  color: #fef08a;
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Verification Badges */
+.badge-verified {
+  background: #dcfce7;
+  color: #166534;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #86efac;
+}
+.badge-historical {
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #fde68a;
+}
+.badge-pending {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #cbd5e1;
+}
+
+/* Feature & Stat Cards */
+.stat-card-gov {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 20px;
+  border: 1px solid var(--palur-border);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.stat-card-gov::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--palur-emerald);
+}
+.stat-card-gov:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(22, 101, 52, 0.12);
+}
+.stat-card-gov .stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  background: var(--palur-emerald-soft);
+  color: var(--palur-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 14px;
+}
+.stat-card-gov .stat-number {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--palur-primary-dark);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.stat-card-gov .stat-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--palur-dark);
+  margin-bottom: 6px;
+}
+.stat-card-gov .stat-source {
+  font-size: 0.75rem;
+  color: var(--palur-muted);
+}
+
+/* Service Box */
+.service-card-gov {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid var(--palur-border);
+  padding: 24px;
+  height: 100%;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.service-card-gov:hover {
+  border-color: var(--palur-emerald);
+  box-shadow: 0 8px 24px rgba(21, 128, 61, 0.1);
+  transform: translateY(-3px);
+}
+.service-card-gov .icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--palur-emerald-soft);
+  color: var(--palur-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  margin-bottom: 16px;
+}
+.service-card-gov h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--palur-primary-dark);
+  margin-bottom: 10px;
+}
+.service-card-gov p {
+  font-size: 0.9rem;
+  color: var(--palur-slate);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+/* Service Detail Process Step */
+.process-step-gov {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  padding-bottom: 24px;
+}
+.process-step-gov::after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 42px;
+  bottom: 0;
+  width: 2px;
+  background: #e2e8f0;
+}
+.process-step-gov:last-child::after {
+  display: none;
+}
+.step-number-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--palur-emerald);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* Section Title Government Style */
+.section-title {
+  text-align: center;
+  padding-bottom: 35px;
+  position: relative;
+}
+.section-title h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--palur-primary-dark);
+  position: relative;
+  margin-bottom: 10px;
+}
+.section-title p {
+  color: var(--palur-muted);
+  font-size: 1rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--palur-gold);
+  bottom: 15px;
+  left: calc(50% - 30px);
+  border-radius: 2px;
+}
+
+/* News Cards */
+.news-card-gov {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--palur-border);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.news-card-gov:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(20, 83, 45, 0.1);
+}
+.news-thumb-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+.news-thumb-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.news-card-gov:hover .news-thumb-wrapper img {
+  transform: scale(1.05);
+}
+.news-date-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(20, 83, 45, 0.9);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.news-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.news-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--palur-primary-dark);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.news-body p {
+  font-size: 0.88rem;
+  color: var(--palur-slate);
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+/* Tables in Gov Style */
+.table-gov {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--palur-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.table-gov thead th {
+  background: #f1f5f9;
+  color: var(--palur-primary-dark);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--palur-border);
+}
+.table-gov tbody td {
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: var(--palur-slate);
+  border-bottom: 1px solid #f1f5f9;
+}
+.table-gov tbody tr:hover td {
+  background-color: #f8fafc;
+}
+.table-gov tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Institutional Footer */
+.footer-gov {
+  background: #0b2e17;
+  color: #cbd5e1;
+  padding-top: 60px;
+  font-size: 0.9rem;
+}
+.footer-gov h4 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+.footer-gov h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 36px;
+  height: 2px;
+  background: var(--palur-gold);
+}
+.footer-gov a {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-gov a:hover {
+  color: #fde047;
+}
+.footer-bottom-gov {
+  background: #071f0f;
+  padding: 20px 0;
+  margin-top: 50px;
+  font-size: 0.825rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Gallery Portfolio Card */
+.gallery-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+.gallery-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.gallery-card-body {
+  padding: 14px 16px;
+}
+.gallery-card-body h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--palur-primary-dark);
+}
+.gallery-card-body span {
+  font-size: 0.75rem;
+  color: var(--palur-muted);
+}
+
+/* Verification Note Box */
+.notice-box-gov {
+  background: #f0fdf4;
+  border-left: 4px solid var(--palur-emerald);
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+.notice-box-warning {
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .hero-palur h1 {
+    font-size: 2rem;
+  }
+  .header .sitename {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 576px) {
+  .hero-palur {
+    padding: 60px 0 70px;
+    min-height: 420px;
+  }
+  .hero-palur h1 {
+    font-size: 1.65rem;
+  }
+  .stat-card-gov {
+    padding: 18px 16px;
+  }
+}
