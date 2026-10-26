@@ -164,35 +164,47 @@
           <div class="col-lg-4">
             <div class="d-flex flex-column gap-4">
 
-              <!-- Arsip Artikel Lainnya -->
+              <!-- Warta & Arsip Terkait -->
               <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-                <h5 class="fw-bold text-success mb-3"><i class="bi bi-newspaper me-2"></i>Arsip Berita Lainnya</h5>
+                <h5 class="fw-bold text-success mb-3"><i class="bi bi-newspaper me-2"></i>Warta & Publikasi Lainnya</h5>
                 <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
                   <li class="border-bottom pb-2">
+                    <span class="badge bg-success-subtle text-success small mb-1">Terkini 2024</span>
+                    <small class="text-muted d-block"><i class="bi bi-calendar3 me-1"></i> 17 Des 2024</small>
+                    <a href="berita-detail.html?id=mbkm-uns" class="text-decoration-none text-dark fw-semibold small hover-success">
+                      Penutupan Hibah MBKM UNS: Digitalisasi Toko Kelontong Warga
+                    </a>
+                  </li>
+                  <li class="border-bottom pb-2">
+                    <span class="badge bg-primary-subtle text-primary small mb-1">Terkini 2025</span>
+                    <small class="text-muted d-block"><i class="bi bi-calendar3 me-1"></i> 16 Sep 2025</small>
+                    <a href="berita-detail.html?id=ppid-desa" class="text-decoration-none text-dark fw-semibold small hover-success">
+                      Tata Cara Permohonan Informasi Publik PPID Desa Palur
+                    </a>
+                  </li>
+                  <li class="border-bottom pb-2">
+                    <span class="badge bg-warning-subtle text-warning-emphasis small mb-1">Regulasi 2024</span>
+                    <small class="text-muted d-block"><i class="bi bi-calendar3 me-1"></i> 08 Jul 2024</small>
+                    <a href="berita-detail.html?id=sk-bupati" class="text-decoration-none text-dark fw-semibold small hover-success">
+                      Pengukuhan SK Bupati: Perpanjangan Jabatan Kades Menjadi 8 Tahun
+                    </a>
+                  </li>
+                  <li class="border-bottom pb-2">
+                    <span class="badge-historical small mb-1">Arsip 2017</span>
                     <small class="text-muted d-block"><i class="bi bi-calendar3 me-1"></i> 06 Sep 2017</small>
                     <a href="berita-detail.html?id=sambutan" class="text-decoration-none text-dark fw-semibold small hover-success">
                       Sambutan Selamat Datang Kepala Desa Palur
                     </a>
                   </li>
                   <li class="border-bottom pb-2">
+                    <span class="badge-historical small mb-1">Arsip 2017</span>
                     <small class="text-muted d-block"><i class="bi bi-calendar3 me-1"></i> 27 Agu 2017</small>
                     <a href="berita-detail.html?id=tirakatan" class="text-decoration-none text-dark fw-semibold small hover-success">
                       Malam Tirakatan Memperingati HUT RI ke-72 Warga Palur
                     </a>
                   </li>
-                  <li class="border-bottom pb-2">
-                    <small class="text-muted d-block"><i class="bi bi-calendar3 me-1"></i> 22 Agu 2017</small>
-                    <a href="berita-detail.html?id=lomba" class="text-decoration-none text-dark fw-semibold small hover-success">
-                      Lomba Kemeriahan HUT NKRI ke-72 Dukuh Klaruan RW 14
-                    </a>
-                  </li>
-                  <li class="border-bottom pb-2">
-                    <small class="text-muted d-block"><i class="bi bi-calendar3 me-1"></i> 01 Agu 2017</small>
-                    <a href="berita-detail.html?id=halal-bi-halal" class="text-decoration-none text-dark fw-semibold small hover-success">
-                      Halal Bi Halal Pertanian Kecamatan Mojolaban
-                    </a>
-                  </li>
                   <li>
+                    <span class="badge-historical small mb-1">Arsip 2017</span>
                     <small class="text-muted d-block"><i class="bi bi-calendar3 me-1"></i> 30 Jul 2017</small>
                     <a href="berita-detail.html?id=perbaikan-jalan" class="text-decoration-none text-dark fw-semibold small hover-success">
                       Perbaikan dan Pengaspalan Jalan Utama Desa Palur
@@ -294,6 +306,53 @@
   <!-- Script Penampil Berita Dinamis -->
   <script>
     const articlesData = {
+      'mbkm-uns': {
+        title: 'Penutupan Hibah MBKM UNS 2024: Fasilitasi & Digitalisasi Toko Kelontong Warga Palur',
+        date: '17 Desember 2024',
+        category: 'Pemberdayaan UMKM',
+        image: 'assets/img/galeri/IMG_20170802_091331.jpg',
+        body: `
+          <p class="lead fw-normal text-dark">Program Hibah Merdeka Belajar Kampus Merdeka (MBKM) Universitas Sebelas Maret (UNS) tahun 2024 di Desa Palur, Kecamatan Mojolaban resmi ditutup dengan capaian pemberdayaan positif bagi para pelaku usaha mikro.</p>
+          <p>Dalam program pendampingan yang berlangsung intensif selama satu semester, tim mahasiswa dan dosen pembimbing lapangan UNS bersinergi dengan Pemerintah Desa Palur untuk memfasilitasi modernisasi pencatatan usaha dan digitalisasi tata kelola toko kelontong milik warga desa.</p>
+          <p>Kepala Desa Palur beserta perangkat desa menyambut hangat capaian program ini. Dengan adanya pembekalan pencatatan pembukuan digital, manajemen persediaan barang berbasis aplikasi, dan literasi transaksi non-tunai (QRIS), daya saing toko kelontong tradisional di Desa Palur diharapkan semakin kokoh di tengah perputaran ekonomi kawasan Mojolaban.</p>
+          <p>Pemerintah Desa Palur menyampaikan apresiasi setinggi-tingginya kepada seluruh sivitas akademika UNS atas sumbangsih nyata pengabdian kepada masyarakat desa.</p>
+        `,
+        gallery: [
+          'assets/img/galeri/IMG_20170802_091331.jpg',
+          'assets/img/galeri/IMG_20170802_091402.jpg'
+        ]
+      },
+      'ppid-desa': {
+        title: 'Peningkatan Keterbukaan Informasi Publik: Standar Alur Permohonan Informasi PPID Desa Palur',
+        date: '16 September 2025',
+        category: 'PPID & Transparansi',
+        image: 'assets/img/palur/sawah2.jpg',
+        body: `
+          <p class="lead fw-normal text-dark">Guna mewujudkan tata kelola desa yang bersih, transparan, dan akuntabel, Pemerintah Desa Palur menetapkan Standar Operasional Prosedur (SOP) Pelayanan Informasi Publik melalui Pejabat Pengelola Informasi dan Dokumentasi (PPID) Desa.</p>
+          <p>Sesuai amanat Undang-Undang No. 14 Tahun 2008 tentang Keterbukaan Informasi Publik, seluruh warga masyarakat dan pemangku kepentingan memiliki hak untuk mengakses informasi penyelenggaraan pemerintahan desa, rencana kerja pembangunan desa (RKPDes), serta laporan pertanggungjawaban realisasi APBDes.</p>
+          <p>Masyarakat dapat mengajukan permohonan informasi baik secara luring di meja pelayanan PPID Kantor Desa Palur Jl. Lati No. 1 maupun secara daring melalui kanal formulir koordinasi website dan portal resmi PPID Kabupaten Sukoharjo.</p>
+          <p>Langkah keterbukaan ini menjadi wujud komitmen pamong desa untuk memastikan setiap rupiah anggaran desa dikelola secara profesional demi kemaslahatan warga.</p>
+        `,
+        gallery: [
+          'assets/img/palur/sawah2.jpg'
+        ]
+      },
+      'sk-bupati': {
+        title: 'Pengukuhan Perpanjangan Masa Jabatan Kepala Desa Palur Menjadi 8 Tahun Sesuai SK Bupati Sukoharjo',
+        date: '08 Juli 2024',
+        category: 'Regulasi Pemerintah',
+        image: 'assets/img/galeri/IMG_0771.jpg',
+        body: `
+          <p class="lead fw-normal text-dark">Bupati Sukoharjo secara resmi menerbitkan dan mengukuhkan Keputusan Bupati Sukoharjo Nomor: 400.10.2/426 Tahun 2024 tentang Perpanjangan Masa Jabatan Kepala Desa Palur, Kecamatan Mojolaban.</p>
+          <p>Berdasarkan keputusan resmi tersebut, masa kepemimpinan Saudara <strong>Sugito, S.Pd.</strong> sebagai Kepala Desa Palur secara sah diperpanjang menjadi 8 (delapan) tahun, sesuai dengan ketentuan Undang-Undang Republik Indonesia Nomor 3 Tahun 2024 tentang Perubahan Kedua atas Undang-Undang Nomor 6 Tahun 2014 tentang Desa.</p>
+          <p>Pengukuhan perpanjangan masa jabatan ini memberikan kepastian legalitas dan kontinuitas kepemimpinan bagi Pemerintah Desa Palur untuk menuntaskan program-program strategis pembangunan fisik, pemberdayaan ekonomi masyarakat, optimalisasi ketahanan pangan, dan digitalisasi pelayanan warga.</p>
+          <p>Bapak Sugito, S.Pd. menegaskan kesiapannya untuk mengemban amanah dengan senantiasa menjaga keguyuban rukun warga dan meningkatkan kualitas pengabdian aparatur kepada seluruh lapisan masyarakat Desa Palur.</p>
+        `,
+        gallery: [
+          'assets/img/galeri/IMG_0771.jpg',
+          'assets/img/galeri/IMG_0770.jpg'
+        ]
+      },
       'sambutan': {
         title: 'Sambutan Kepala Desa Palur: Menjalin Keterbukaan & Pelayanan Warga',
         date: '06 September 2017',
