@@ -644,6 +644,170 @@ time,
   font-size: 0.9rem;
 }
 
+/* Topbar Portal Switcher (Palur <-> Gadingan <-> Plumbon) */
+.portal-switcher-gov {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 3px 6px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+.portal-switcher-gov .switcher-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fde047;
+  font-weight: 700;
+  padding: 0 6px;
+}
+.portal-switcher-gov a {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 50px;
+  color: #e2e8f0 !important;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+.portal-switcher-gov a:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff !important;
+}
+.portal-switcher-gov a.active {
+  background: var(--palur-gold);
+  color: #0f172a !important;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Village Accent Themes (Shared Layout & Components, Distinct Brand Tokens)
+   1. Desa Gadingan (.theme-gadingan): Deep River Teal / Cyan-Emerald & Gold
+   2. Desa Plumbon (.theme-plumbon): Botanical Olive / Leaf Green & Bronze Gold
+   ========================================================================== */
+body.theme-gadingan {
+  --palur-primary: #0f766e;
+  --palur-primary-dark: #115e59;
+  --palur-primary-light: #14b8a6;
+  --palur-emerald: #0d9488;
+  --palur-emerald-soft: #f0fdfa;
+  --palur-gold: #d97706;
+  --palur-gold-dark: #b45309;
+  --palur-gold-light: #fef3c7;
+  --accent-color: #0d9488;
+  --heading-color: #115e59;
+  --nav-hover-color: #0d9488;
+  --nav-dropdown-hover-color: #0d9488;
+}
+body.theme-gadingan .marquee-wrapper {
+  background: #0c4a46;
+}
+body.theme-gadingan .hero-palur {
+  background: linear-gradient(135deg, rgba(17, 94, 89, 0.92) 0%, rgba(13, 74, 70, 0.88) 100%),
+              url('../img/gadingan/gapura-gadingan.jpg') center center / cover no-repeat;
+}
+body.theme-gadingan .page-title {
+  background: linear-gradient(135deg, #115e59 0%, #0f766e 100%) !important;
+}
+body.theme-gadingan .footer-gov {
+  background: #083835;
+}
+body.theme-gadingan .footer-bottom-gov {
+  background: #052624;
+}
+body.theme-gadingan .notice-box-gov {
+  background: #f0fdfa;
+  border-left-color: #0d9488;
+}
+body.theme-gadingan .badge-verified {
+  background: #ccfbf1;
+  color: #115e59;
+  border-color: #5eead4;
+}
+body.theme-gadingan .text-success {
+  color: #0f766e !important;
+}
+body.theme-gadingan .bg-success {
+  background-color: #0f766e !important;
+}
+body.theme-gadingan .border-success {
+  border-color: #0d9488 !important;
+}
+body.theme-gadingan .bg-success-subtle {
+  background-color: #ccfbf1 !important;
+}
+body.theme-gadingan .btn-outline-success {
+  color: #0f766e;
+  border-color: #0f766e;
+}
+body.theme-gadingan .btn-outline-success:hover {
+  background-color: #0f766e;
+  border-color: #0f766e;
+  color: #ffffff;
+}
+
+body.theme-plumbon {
+  --palur-primary: #3f6212;
+  --palur-primary-dark: #365314;
+  --palur-primary-light: #65a30d;
+  --palur-emerald: #4d7c0f;
+  --palur-emerald-soft: #f7fee7;
+  --palur-gold: #c59b27;
+  --palur-gold-dark: #a16207;
+  --palur-gold-light: #fef9c3;
+  --accent-color: #4d7c0f;
+  --heading-color: #365314;
+  --nav-hover-color: #4d7c0f;
+  --nav-dropdown-hover-color: #4d7c0f;
+}
+body.theme-plumbon .marquee-wrapper {
+  background: #283e0e;
+}
+body.theme-plumbon .hero-palur {
+  background: linear-gradient(135deg, rgba(54, 83, 20, 0.92) 0%, rgba(40, 62, 14, 0.88) 100%),
+              url('../img/plumbon/balai-plumbon.jpg') center center / cover no-repeat;
+}
+body.theme-plumbon .page-title {
+  background: linear-gradient(135deg, #365314 0%, #3f6212 100%) !important;
+}
+body.theme-plumbon .footer-gov {
+  background: #1f310a;
+}
+body.theme-plumbon .footer-bottom-gov {
+  background: #142006;
+}
+body.theme-plumbon .notice-box-gov {
+  background: #f7fee7;
+  border-left-color: #4d7c0f;
+}
+body.theme-plumbon .badge-verified {
+  background: #ecfccb;
+  color: #365314;
+  border-color: #bef264;
+}
+body.theme-plumbon .text-success {
+  color: #3f6212 !important;
+}
+body.theme-plumbon .bg-success {
+  background-color: #3f6212 !important;
+}
+body.theme-plumbon .border-success {
+  border-color: #4d7c0f !important;
+}
+body.theme-plumbon .bg-success-subtle {
+  background-color: #ecfccb !important;
+}
+body.theme-plumbon .btn-outline-success {
+  color: #3f6212;
+  border-color: #3f6212;
+}
+body.theme-plumbon .btn-outline-success:hover {
+  background-color: #3f6212;
+  border-color: #3f6212;
+  color: #ffffff;
+}
+
 /* Responsive adjustments */
 @media (max-width: 991px) {
   .hero-palur h1 {

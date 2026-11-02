@@ -19,3 +19,19 @@ isi-website.txt
 # IDE
 .vscode/
 .idea/
+
+# AI Agent & Planning Artifacts (Local Only)
+.agents/
+.agent/
+.claude/
+.gemini/
+.cursor/
+.windsurf/
+todo.md
+TODO.md
+task.md
+implementation_plan.md
+walkthrough.md
+AGENTS.md
+CLAUDE.md
+GEMINI.md
