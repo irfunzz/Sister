@@ -27,6 +27,8 @@ isi-website.txt
 .gemini/
 .cursor/
 .windsurf/
+skills-lock.json
+.playwright-mcp/
 todo.md
 TODO.md
 task.md

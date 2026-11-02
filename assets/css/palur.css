@@ -1,14 +1,15 @@
-/**
- * Custom Stylesheet: Portal Resmi Desa Palur, Mojolaban, Sukoharjo
- * Extends BootstrapMade HeroBiz / BizLand Theme
- * Standard: UI/UX Pro Max - Non-AI Slop, High Legibility, 8pt Grid, WCAG AAA Accessible
- * Palette: Forest Emerald (#166534, #15803d), Gold (#c59b27, #d97706), Slate Neutral (#0f172a, #1e293b)
+/* Portal Resmi Desa Kecamatan Mojolaban (Palur, Gadingan, Plumbon)
+ * Design Read: Public institutional village portal for citizens of Kecamatan Mojolaban, dial ENERGY 1 / RHYTHM 2 / MOTION 1.
+ * Decisions (R-31):
+ * - Palette: Grounded civic greens/teals/olives with warm gold accents to reflect agrarian & riverine village identity in Sukoharjo.
+ * - Typography: Plus Jakarta Sans for high legibility across data tables, administrative requirements, and long-form village history.
+ * - Layout: 8pt spatial scale with asymmetric hero + scannable administrative cards tailored to real citizen tasks (KTP, KK, Akta, SKCK).
+ * - Motion: Dial MOTION 1 (hover/focus states only); scroll-reveal opacity hiding and infinite marquee loops are disabled for instant readability.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Brand Tokens - Grounded Public Institutional Colors (No Neon AI Gradients) */
   --palur-primary: #166534;
   --palur-primary-dark: #14532d;
   --palur-primary-light: #22c55e;
@@ -19,12 +20,12 @@
   --palur-gold-light: #fef3c7;
   --palur-dark: #0f172a;
   --palur-slate: #334155;
-  --palur-muted: #64748b;
+  --palur-muted: #475569;
   --palur-light: #f8fafc;
+  --palur-surface: #ffffff;
   --palur-border: #e2e8f0;
   --palur-border-subtle: #cbd5e1;
 
-  /* 8-Point Spatial Grid Tokens */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -34,19 +35,17 @@
   --space-12: 48px;
   --space-16: 64px;
 
-  /* Multi-Layer Refined Elevation (Crisp, Anti-AI Glow) */
   --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
   --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
   --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
-  
+
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 220ms cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* Override template color tokens */
+
   --accent-color: #15803d;
   --heading-color: #14532d;
   --default-color: #1e293b;
@@ -56,111 +55,317 @@
   --nav-dropdown-hover-color: #15803d;
 }
 
-/* Global Typography & Legibility Polish */
+/* Prevent horizontal scroll leak across all viewports (R-03) */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  color: #1e293b;
-  background-color: #f8fafc;
+  color: var(--default-color);
+  background-color: var(--palur-light);
   line-height: 1.65;
+  font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Accessible Focus States (WCAG AA/AAA) */
+/* Base interaction affordances (R-39): pointer cursor on all enabled interactive controls */
+a[href],
+button,
+summary,
+select,
+label[for],
+input[type="checkbox"],
+input[type="radio"],
+input[type="submit"],
+input[type="button"],
+[role="button"],
+[role="tab"],
+[role="switch"],
+.portfolio-filters li,
+.mobile-nav-toggle {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* High-contrast keyboard focus indicator (R-32) */
 *:focus-visible {
-  outline: 2px solid #16a34a !important;
+  outline: 3px solid var(--palur-gold) !important;
   outline-offset: 2px !important;
 }
 
-/* Tabular Numerals for Data Tables, Counters, and Dates */
-.stat-number, 
-.badge, 
-.table-gov, 
-.news-date-badge, 
-time, 
+/* Keep content visible at rest (Dial MOTION 1, R-19, R-39) */
+[data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Respect user reduced-motion preference (R-39) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tabular numerals for statistics, dates, and financial tables */
+.stat-number,
+.stat-value,
+.badge,
+.table-gov,
+.news-date-badge,
+time,
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
 
-/* Announcement Topbar & Marquee */
-.topbar-gov {
+/* Utility classes used across village templates */
+.w-fit {
+  width: fit-content;
+}
+.leading-relaxed {
+  line-height: 1.75;
+}
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+.bg-opacity-90 {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+}
+.backdrop-blur {
+  backdrop-filter: blur(8px);
+}
+.hover-success:hover {
+  color: var(--palur-emerald) !important;
+}
+
+/* Institutional Topbar & Multi-Village Portal Switcher */
+.topbar-gov,
+.topbar-gov.d-none.d-lg-block {
+  display: block !important;
   background: var(--palur-primary-dark);
   color: #ffffff;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   padding: 6px 0;
   border-bottom: 2px solid var(--palur-gold);
 }
+.topbar-gov .container {
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.topbar-left {
+  flex-wrap: nowrap;
+  gap: 14px !important;
+  overflow: hidden;
+  min-width: 0;
+}
+.topbar-left span {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: #f1f5f9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-right {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 .topbar-gov a {
-  color: #e2e8f0;
+  color: #f1f5f9;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
 }
 .topbar-gov a:hover {
   color: #fef08a;
 }
-.marquee-wrapper {
-  overflow: hidden;
+
+/* Topbar Portal Switcher (Palur <-> Gadingan <-> Plumbon) */
+.portal-switcher-gov {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 3px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
   white-space: nowrap;
-  position: relative;
-  background: #0f3d20;
-  color: #fef9c3;
-  padding: 5px 0;
-  font-size: 0.825rem;
-  border-bottom: 1px solid rgba(197, 155, 39, 0.3);
 }
-.marquee-text {
-  display: inline-block;
-  animation: marquee-scroll 32s linear infinite;
-  padding-left: 100%;
+.portal-switcher-gov .switcher-label,
+.portal-switcher-gov .portal-label {
+  font-size: 0.74rem;
+  color: #fde047;
+  font-weight: 700;
+  padding: 0 6px;
+  white-space: nowrap;
 }
-@keyframes marquee-scroll {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-100%, 0, 0); }
+.portal-switcher-gov a {
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  color: #f8fafc !important;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+}
+.portal-switcher-gov a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff !important;
+}
+.portal-switcher-gov a.active {
+  background: var(--palur-gold);
+  color: #0f172a !important;
+  font-weight: 700;
 }
 
-/* Header & Brand Identity */
-.header .logo img {
-  max-height: 48px;
-  margin-right: 12px;
+/* Static Institutional Information Bar (replaces endless marquee loop per R-19 & R-39) */
+.marquee-wrapper,
+.announcement-bar {
+  background: #0f3d20;
+  color: #fef9c3;
+  padding: 8px 16px;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+  overflow: hidden;
 }
-.header .sitename {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--palur-primary-dark);
-  line-height: 1.2;
-  margin-bottom: 0;
-}
-.header .sitename-sub {
-  font-size: 0.75rem;
-  color: var(--palur-muted);
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+.marquee-text {
   display: block;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 0 !important;
+  animation: none !important;
+  white-space: normal !important;
+  line-height: 1.5;
+  text-align: center;
+}
+.badge-announcement {
+  display: inline-flex;
+  align-items: center;
+  background: var(--palur-gold);
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* Header & Brand Identity (Overrides main.css .header .logo span 32px bug) */
+.header {
+  padding: 10px 0;
+  background-color: #ffffff;
+  box-shadow: var(--shadow-xs);
+}
+.header .logo {
+  gap: 10px;
+  text-decoration: none;
+  min-width: 0;
+  flex-shrink: 0;
+}
+.header .logo img {
+  width: 38px !important;
+  height: 44px !important;
+  max-height: 44px !important;
+  margin-right: 0 !important;
+  object-fit: cover;
+  object-position: left center;
+  flex-shrink: 0;
+}
+.header .logo img[src*="logo-sukoharjo"] {
+  width: 44px !important;
+  object-fit: contain;
+  object-position: center center;
+}
+.footer-gov .footer-about img {
+  width: 36px !important;
+  height: 42px !important;
+  object-fit: cover;
+  object-position: left center;
+  flex-shrink: 0;
+}
+.footer-gov .footer-about img[src*="logo-sukoharjo"] {
+  width: 42px !important;
+  object-fit: contain;
+  object-position: center center;
+}
+.header .logo .sitename,
+.header .sitename {
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  color: var(--palur-primary-dark) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 2px !important;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.header .logo span.sitename-sub,
+.header .sitename-sub {
+  font-size: 0.75rem !important;
+  color: var(--palur-muted) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  padding-left: 0 !important;
+  text-transform: none !important;
+  display: block !important;
+  line-height: 1.25 !important;
+  white-space: nowrap;
 }
 
 /* Navigation enhancements */
+@media (min-width: 1200px) {
+  .navmenu > ul > li {
+    padding: 12px 10px !important;
+  }
+  .navmenu > ul > li > a {
+    padding: 4px 2px !important;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+}
 .navmenu ul li a {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
 .navmenu ul li a.active,
 .navmenu ul li a:hover {
   color: var(--palur-emerald);
 }
+
+/* Primary & Outline Buttons with >= 44px touch target height (R-03) */
 .btn-getstarted,
 .btn-portal-primary {
   background: var(--palur-emerald);
   color: #ffffff !important;
   font-weight: 600;
-  padding: 10px 22px;
+  font-size: 0.9rem;
+  min-height: 44px;
+  padding: 10px 20px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--palur-emerald);
-  transition: var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   box-shadow: var(--shadow-xs);
+  white-space: nowrap;
+  text-decoration: none;
 }
 .btn-getstarted:hover,
 .btn-portal-primary:hover {
@@ -175,18 +380,23 @@ time,
   transform: translateY(1px);
   box-shadow: none;
 }
+
 .btn-portal-outline {
   background: #ffffff;
   color: var(--palur-primary) !important;
   font-weight: 600;
-  padding: 9px 20px;
+  font-size: 0.9rem;
+  min-height: 44px;
+  padding: 10px 20px;
   border-radius: var(--radius-sm);
   border: 1.5px solid var(--palur-primary);
-  transition: var(--transition-fast);
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   box-shadow: var(--shadow-xs);
+  text-decoration: none;
 }
 .btn-portal-outline:hover {
   background: var(--palur-primary);
@@ -198,79 +408,203 @@ time,
   transform: translateY(1px);
 }
 
-/* Citizen Quick Access Chips */
+/* Hero outline button inside dark hero banner */
+.hero-palur .btn-portal-outline {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.65);
+}
+.hero-palur .btn-portal-outline:hover {
+  background: #ffffff;
+  color: var(--palur-primary-dark) !important;
+  border-color: #ffffff;
+}
+
+/* Citizen Quick Access Chips & Cards (44px min touch height for mobile R-03) */
 .quick-service-chip {
   display: inline-flex;
   align-items: center;
+  min-height: 44px;
   gap: 6px;
-  padding: 7px 14px;
-  border-radius: 50px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
   background: #f8fafc;
-  border: 1px solid var(--palur-border);
-  color: var(--palur-slate);
+  border: 1px solid var(--palur-border-subtle);
+  color: var(--palur-dark);
   text-decoration: none;
-  font-size: 0.825rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  transition: var(--transition-fast);
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 }
 .quick-service-chip:hover {
   background: var(--palur-emerald-soft);
   color: var(--palur-emerald);
-  border-color: #86efac;
+  border-color: var(--palur-emerald);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-xs);
 }
 .quick-service-chip:active {
   transform: translateY(1px);
 }
 
+/* Quick Access Grid Cards (Desa Plumbon) */
+.quick-access-wrapper {
+  margin-top: -28px;
+  position: relative;
+  z-index: 10;
+}
+.quick-access-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid var(--palur-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--palur-dark);
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+}
+.quick-access-card:hover {
+  border-color: var(--palur-emerald);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.quick-access-card .icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--palur-emerald-soft);
+  color: var(--palur-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+.quick-access-card h5 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--palur-primary-dark);
+  margin-bottom: 2px;
+}
+.quick-access-card p {
+  font-size: 0.78rem;
+  color: var(--palur-muted);
+  margin-bottom: 0;
+}
+
 /* Hero Section */
 .hero-palur {
   position: relative;
-  background: linear-gradient(135deg, rgba(20, 83, 45, 0.92) 0%, rgba(15, 61, 32, 0.88) 100%),
+  background: linear-gradient(135deg, rgba(20, 83, 45, 0.93) 0%, rgba(15, 61, 32, 0.89) 100%),
               url('../img/palur/sawah2.jpg') center center / cover no-repeat;
   color: #ffffff;
-  padding: 90px 0 100px;
-  min-height: 540px;
+  padding: 72px 0 84px;
+  min-height: 480px;
   display: flex;
   align-items: center;
 }
 .hero-palur h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
   font-weight: 800;
-  color: #ffffff;
-  line-height: 1.25;
+  color: #ffffff !important;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
 }
 .hero-palur h1 span {
   color: #fde047;
 }
-.hero-palur p.lead-hero {
-  font-size: 1.15rem;
+.hero-palur p.lead-hero,
+.hero-palur p.hero-lead {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
   color: #f1f5f9;
   line-height: 1.7;
-}
-.hero-badge-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(254, 240, 138, 0.18);
-  border: 1px solid rgba(254, 240, 138, 0.5);
-  color: #fef08a;
-  padding: 5px 14px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 18px;
+  max-width: 65ch;
 }
 
-/* Verification Badges */
+/* Institutional Masthead Kicker (replaces AI capsule pill badge above H1 per R-09) */
+.hero-badge-tag,
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  border-left: 3px solid #fde047;
+  color: #fef08a;
+  padding: 2px 0 2px 10px;
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+/* Subpage Banner Header (.page-title) - Fixes invisible dark H1/H2 on dark background (R-25) */
+.page-title {
+  background: linear-gradient(135deg, var(--palur-primary-dark) 0%, var(--palur-primary) 100%) !important;
+  color: #ffffff !important;
+}
+.page-title h1,
+.page-title h2,
+.page-title h3 {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.015em;
+}
+.page-title h1 {
+  font-size: clamp(1.6rem, 2.8vw, 2.25rem) !important;
+}
+.page-title h2 {
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem) !important;
+}
+.page-title p,
+.page-title .lead,
+.page-title span,
+.page-title .breadcrumb-item,
+.page-title .breadcrumb-item a {
+  color: #f1f5f9 !important;
+}
+.page-title .breadcrumb-item.active {
+  color: #fef08a !important;
+}
+.page-title .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* Form Controls & Inputs Polish (antislop-human & frontend-ui-engineering) */
+.form-control,
+.form-select {
+  min-height: 44px;
+  font-size: 0.92rem;
+  border: 1.5px solid var(--palur-border);
+  color: var(--palur-slate);
+  background-color: #ffffff;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--palur-emerald);
+  box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.15);
+  outline: none;
+}
+textarea.form-control {
+  min-height: 110px;
+}
+
+/* Source & Verification Badges */
 .badge-verified {
   background: #dcfce7;
-  color: #166534;
+  color: #14532d;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 4px 10px;
-  border-radius: 20px;
+  border-radius: var(--radius-sm);
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -278,11 +612,11 @@ time,
 }
 .badge-historical {
   background: #fef3c7;
-  color: #92400e;
+  color: #78350f;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 4px 10px;
-  border-radius: 20px;
+  border-radius: var(--radius-sm);
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -290,111 +624,143 @@ time,
 }
 .badge-pending {
   background: #f1f5f9;
-  color: #475569;
+  color: #334155;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 4px 10px;
-  border-radius: 20px;
+  border-radius: var(--radius-sm);
   display: inline-flex;
   align-items: center;
   gap: 5px;
   border: 1px solid #cbd5e1;
 }
 
-/* Feature & Stat Cards */
+/* Stat Cards (Clean top border accent instead of left-stripe decoration per antislop-ui) */
 .stat-card-gov {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 24px 20px;
   border: 1px solid var(--palur-border);
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-top: 3px solid var(--palur-emerald);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
   position: relative;
   overflow: hidden;
   height: 100%;
 }
-.stat-card-gov::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--palur-emerald);
-}
 .stat-card-gov:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(22, 101, 52, 0.12);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 .stat-card-gov .stat-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
   background: var(--palur-emerald-soft);
   color: var(--palur-emerald);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   margin-bottom: 14px;
 }
-.stat-card-gov .stat-number {
-  font-size: 1.9rem;
+.stat-card-gov .stat-number,
+.stat-card-gov .stat-value {
+  font-size: 1.85rem;
   font-weight: 800;
   color: var(--palur-primary-dark);
-  line-height: 1.1;
+  line-height: 1.15;
   margin-bottom: 4px;
 }
 .stat-card-gov .stat-label {
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--palur-dark);
   margin-bottom: 6px;
 }
-.stat-card-gov .stat-source {
-  font-size: 0.75rem;
+.stat-card-gov .stat-source,
+.stat-card-gov .stat-note {
+  font-size: 0.78rem;
   color: var(--palur-muted);
+  line-height: 1.5;
 }
 
-/* Service Box */
+/* Service Cards (Supports both Palur/Gadingan and Plumbon markup) */
 .service-card-gov {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--palur-border);
   padding: 24px;
   height: 100%;
-  transition: all 0.3s ease;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
   display: flex;
   flex-direction: column;
 }
 .service-card-gov:hover {
   border-color: var(--palur-emerald);
-  box-shadow: 0 8px 24px rgba(21, 128, 61, 0.1);
-  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
-.service-card-gov .icon-wrapper {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
+.service-card-gov .icon-wrapper,
+.service-card-gov .service-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
   background: var(--palur-emerald-soft);
   color: var(--palur-emerald);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   margin-bottom: 16px;
+  flex-shrink: 0;
+}
+.service-card-gov .service-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.service-card-gov .service-header .service-icon {
+  margin-bottom: 0;
 }
 .service-card-gov h4 {
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: var(--palur-primary-dark);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+}
+.service-card-gov .service-header h4 {
+  margin-bottom: 0;
 }
 .service-card-gov p {
   font-size: 0.9rem;
   color: var(--palur-slate);
   margin-bottom: 16px;
   flex-grow: 1;
+}
+.service-card-gov .req-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.84rem;
+  color: var(--palur-slate);
+}
+.service-card-gov .req-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.service-card-gov .req-list li i {
+  color: var(--palur-emerald);
+  margin-top: 2px;
+}
+
+/* Hide repetitive decorative button arrows inside card grids (R-08) */
+.service-card-gov a .bi-arrow-right,
+.news-card-gov a .bi-arrow-right,
+#potensi-ringkas .card a .bi-arrow-right {
+  display: none;
 }
 
 /* Service Detail Process Step */
@@ -412,7 +778,7 @@ time,
   top: 42px;
   bottom: 0;
   width: 2px;
-  background: #e2e8f0;
+  background: var(--palur-border);
 }
 .process-step-gov:last-child::after {
   display: none;
@@ -427,7 +793,7 @@ time,
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   flex-shrink: 0;
   z-index: 1;
 }
@@ -435,19 +801,20 @@ time,
 /* Section Title Government Style */
 .section-title {
   text-align: center;
-  padding-bottom: 35px;
+  padding-bottom: 32px;
   position: relative;
 }
 .section-title h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
   font-weight: 800;
   color: var(--palur-primary-dark);
   position: relative;
   margin-bottom: 10px;
+  letter-spacing: -0.015em;
 }
 .section-title p {
   color: var(--palur-muted);
-  font-size: 1rem;
+  font-size: 0.98rem;
   max-width: 680px;
   margin: 0 auto;
 }
@@ -455,29 +822,29 @@ time,
   content: "";
   position: absolute;
   display: block;
-  width: 60px;
+  width: 56px;
   height: 3px;
   background: var(--palur-gold);
-  bottom: 15px;
-  left: calc(50% - 30px);
+  bottom: 14px;
+  left: calc(50% - 28px);
   border-radius: 2px;
 }
 
 /* News Cards */
 .news-card-gov {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--palur-border);
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 .news-card-gov:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(20, 83, 45, 0.1);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }
 .news-thumb-wrapper {
   position: relative;
@@ -489,16 +856,16 @@ time,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.35s ease;
 }
 .news-card-gov:hover .news-thumb-wrapper img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 .news-date-badge {
   position: absolute;
   top: 12px;
   left: 12px;
-  background: rgba(20, 83, 45, 0.9);
+  background: rgba(15, 23, 42, 0.86);
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 600;
@@ -512,7 +879,7 @@ time,
   flex-grow: 1;
 }
 .news-body h3 {
-  font-size: 1.15rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: var(--palur-primary-dark);
   margin-bottom: 10px;
@@ -521,7 +888,7 @@ time,
 .news-body p {
   font-size: 0.88rem;
   color: var(--palur-slate);
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   flex-grow: 1;
 }
 
@@ -531,20 +898,20 @@ time,
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid var(--palur-border);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 .table-gov thead th {
   background: #f1f5f9;
   color: var(--palur-primary-dark);
   font-weight: 700;
-  font-size: 0.88rem;
+  font-size: 0.875rem;
   padding: 12px 16px;
   border-bottom: 2px solid var(--palur-border);
 }
 .table-gov tbody td {
   padding: 12px 16px;
-  font-size: 0.88rem;
+  font-size: 0.875rem;
   color: var(--palur-slate);
   border-bottom: 1px solid #f1f5f9;
 }
@@ -555,18 +922,92 @@ time,
   border-bottom: none;
 }
 
+/* Gallery Portfolio Card & Filter Buttons */
+.portfolio-filters li {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+.btn-sm {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.portfolio-filters li.filter-active {
+  background-color: var(--palur-primary) !important;
+  border-color: var(--palur-primary) !important;
+  color: #ffffff !important;
+}
+.gallery-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--palur-border);
+  box-shadow: var(--shadow-xs);
+  background: #ffffff;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  height: 100%;
+}
+.gallery-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.gallery-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.gallery-card-body {
+  padding: 16px;
+}
+.gallery-card-body h5 {
+  font-size: 0.96rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--palur-primary-dark);
+}
+.gallery-card-body span {
+  font-size: 0.76rem;
+  color: var(--palur-muted);
+}
+
+/* Callout Notice Boxes (Semantic status boxes with icon + text) */
+.notice-box-gov {
+  background: var(--palur-emerald-soft);
+  border: 1px solid #bbf7d0;
+  border-left: 4px solid var(--palur-emerald);
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  color: var(--palur-dark);
+}
+.notice-box-warning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-left: 4px solid #d97706;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  color: var(--palur-dark);
+}
+
 /* Institutional Footer */
 .footer-gov {
   background: #0b2e17;
-  color: #cbd5e1;
-  padding-top: 60px;
+  color: #e2e8f0;
+  padding-top: 56px;
   font-size: 0.9rem;
 }
 .footer-gov h4 {
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   position: relative;
   padding-bottom: 10px;
 }
@@ -575,117 +1016,42 @@ time,
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 36px;
+  width: 32px;
   height: 2px;
   background: var(--palur-gold);
 }
 .footer-gov a {
-  color: #cbd5e1;
+  color: #e2e8f0;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color var(--transition-fast);
 }
 .footer-gov a:hover {
   color: #fde047;
 }
 .footer-bottom-gov {
   background: #071f0f;
-  padding: 20px 0;
-  margin-top: 50px;
+  color: #cbd5e1;
+  padding: 18px 0;
+  margin-top: 44px;
   font-size: 0.825rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-bottom-gov .text-secondary {
+  color: #cbd5e1 !important;
 }
 
-/* Gallery Portfolio Card */
-.gallery-card {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  background: #ffffff;
-  transition: all 0.3s ease;
+/* Scroll-to-top button: 44x44px minimum touch target (R-03) */
+.scroll-top {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: var(--radius-sm) !important;
+  background-color: var(--palur-primary) !important;
 }
-.gallery-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-}
-.gallery-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-.gallery-card-body {
-  padding: 14px 16px;
-}
-.gallery-card-body h5 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 4px;
-  color: var(--palur-primary-dark);
-}
-.gallery-card-body span {
-  font-size: 0.75rem;
-  color: var(--palur-muted);
+.scroll-top:hover {
+  background-color: var(--palur-primary-dark) !important;
 }
 
-/* Verification Note Box */
-.notice-box-gov {
-  background: #f0fdf4;
-  border-left: 4px solid var(--palur-emerald);
-  padding: 16px 20px;
-  border-radius: 0 8px 8px 0;
-  margin-bottom: 25px;
-  font-size: 0.9rem;
-}
-.notice-box-warning {
-  background: #fffbeb;
-  border-left: 4px solid #f59e0b;
-  padding: 16px 20px;
-  border-radius: 0 8px 8px 0;
-  margin-bottom: 25px;
-  font-size: 0.9rem;
-}
-
-/* Topbar Portal Switcher (Palur <-> Gadingan <-> Plumbon) */
-.portal-switcher-gov {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 3px 6px;
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-}
-.portal-switcher-gov .switcher-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #fde047;
-  font-weight: 700;
-  padding: 0 6px;
-}
-.portal-switcher-gov a {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 2px 10px;
-  border-radius: 50px;
-  color: #e2e8f0 !important;
-  text-decoration: none;
-  transition: var(--transition-fast);
-}
-.portal-switcher-gov a:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #ffffff !important;
-}
-.portal-switcher-gov a.active {
-  background: var(--palur-gold);
-  color: #0f172a !important;
-  font-weight: 700;
-}
-
-/* ==========================================================================
-   Village Accent Themes (Shared Layout & Components, Distinct Brand Tokens)
-   1. Desa Gadingan (.theme-gadingan): Deep River Teal / Cyan-Emerald & Gold
-   2. Desa Plumbon (.theme-plumbon): Botanical Olive / Leaf Green & Bronze Gold
-   ========================================================================== */
+/* Theme Override 1: Desa Gadingan (Deep River Teal & Heritage Gold) */
 body.theme-gadingan {
   --palur-primary: #0f766e;
   --palur-primary-dark: #115e59;
@@ -700,11 +1066,12 @@ body.theme-gadingan {
   --nav-hover-color: #0d9488;
   --nav-dropdown-hover-color: #0d9488;
 }
-body.theme-gadingan .marquee-wrapper {
+body.theme-gadingan .marquee-wrapper,
+body.theme-gadingan .announcement-bar {
   background: #0c4a46;
 }
 body.theme-gadingan .hero-palur {
-  background: linear-gradient(135deg, rgba(17, 94, 89, 0.92) 0%, rgba(13, 74, 70, 0.88) 100%),
+  background: linear-gradient(135deg, rgba(17, 94, 89, 0.93) 0%, rgba(13, 74, 70, 0.89) 100%),
               url('../img/gadingan/gapura-gadingan.jpg') center center / cover no-repeat;
 }
 body.theme-gadingan .page-title {
@@ -718,6 +1085,7 @@ body.theme-gadingan .footer-bottom-gov {
 }
 body.theme-gadingan .notice-box-gov {
   background: #f0fdfa;
+  border-color: #99f6e4;
   border-left-color: #0d9488;
 }
 body.theme-gadingan .badge-verified {
@@ -741,12 +1109,14 @@ body.theme-gadingan .btn-outline-success {
   color: #0f766e;
   border-color: #0f766e;
 }
-body.theme-gadingan .btn-outline-success:hover {
-  background-color: #0f766e;
-  border-color: #0f766e;
-  color: #ffffff;
+body.theme-gadingan .btn-outline-success:hover,
+body.theme-gadingan .portfolio-filters li.filter-active {
+  background-color: #0f766e !important;
+  border-color: #0f766e !important;
+  color: #ffffff !important;
 }
 
+/* Theme Override 2: Desa Plumbon (Botanical Olive & Warm Gold) */
 body.theme-plumbon {
   --palur-primary: #3f6212;
   --palur-primary-dark: #365314;
@@ -761,11 +1131,12 @@ body.theme-plumbon {
   --nav-hover-color: #4d7c0f;
   --nav-dropdown-hover-color: #4d7c0f;
 }
-body.theme-plumbon .marquee-wrapper {
+body.theme-plumbon .marquee-wrapper,
+body.theme-plumbon .announcement-bar {
   background: #283e0e;
 }
 body.theme-plumbon .hero-palur {
-  background: linear-gradient(135deg, rgba(54, 83, 20, 0.92) 0%, rgba(40, 62, 14, 0.88) 100%),
+  background: linear-gradient(135deg, rgba(54, 83, 20, 0.93) 0%, rgba(40, 62, 14, 0.89) 100%),
               url('../img/plumbon/balai-plumbon.jpg') center center / cover no-repeat;
 }
 body.theme-plumbon .page-title {
@@ -779,6 +1150,7 @@ body.theme-plumbon .footer-bottom-gov {
 }
 body.theme-plumbon .notice-box-gov {
   background: #f7fee7;
+  border-color: #d9f99d;
   border-left-color: #4d7c0f;
 }
 body.theme-plumbon .badge-verified {
@@ -802,28 +1174,179 @@ body.theme-plumbon .btn-outline-success {
   color: #3f6212;
   border-color: #3f6212;
 }
-body.theme-plumbon .btn-outline-success:hover {
-  background-color: #3f6212;
-  border-color: #3f6212;
-  color: #ffffff;
+body.theme-plumbon .btn-outline-success:hover,
+body.theme-plumbon .portfolio-filters li.filter-active {
+  background-color: #3f6212 !important;
+  border-color: #3f6212 !important;
+  color: #ffffff !important;
+}
+body.theme-plumbon .btn-success {
+  background-color: #3f6212 !important;
+  border-color: #3f6212 !important;
+}
+body.theme-plumbon .btn-success:hover {
+  background-color: #365314 !important;
+  border-color: #365314 !important;
 }
 
-/* Responsive adjustments */
-@media (max-width: 991px) {
-  .hero-palur h1 {
-    font-size: 2rem;
+/* Multi-State Responsive Breakpoints (Tablet & Mobile Reflow per antislop-layoutmobile R-03) */
+@media (max-width: 1199px) {
+  .topbar-left {
+    display: none !important;
   }
-  .header .sitename {
-    font-size: 1.1rem;
+  .topbar-gov .container {
+    justify-content: center !important;
+  }
+  .topbar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .header .btn-getstarted {
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    min-height: 40px;
+    margin: 0 8px 0 0;
+  }
+  .mobile-nav-toggle {
+    width: 44px;
+    height: 44px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0 !important;
+  }
+
+  /* Mobile Nav Drawer & Modal Optimization (R-03, antislop-ui, antislop-layoutmobile) */
+  .mobile-nav-active .mobile-nav-toggle {
+    position: fixed !important;
+    top: 14px !important;
+    right: 14px !important;
+    z-index: 10001 !important;
+    width: 44px !important;
+    height: 44px !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+  }
+  .mobile-nav-active .navmenu {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(15, 23, 42, 0.65) !important;
+    backdrop-filter: blur(4px) !important;
+    z-index: 9999 !important;
+  }
+  .mobile-nav-active .navmenu ul {
+    position: absolute !important;
+    inset: auto !important;
+    top: 68px !important;
+    left: 14px !important;
+    right: 14px !important;
+    max-height: calc(100vh - 88px) !important;
+    background: #ffffff !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-lg) !important;
+    border: 1px solid var(--palur-border) !important;
+    padding: 10px 0 !important;
+    overflow-y: auto !important;
+  }
+  .mobile-nav-active .navmenu a {
+    min-height: 46px !important;
+    padding: 11px 20px !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .mobile-nav-active .navmenu a.active {
+    color: var(--palur-emerald) !important;
+    background-color: #f0fdf4 !important;
+    border-left: 3px solid var(--palur-emerald) !important;
+  }
+  body.theme-gadingan .mobile-nav-active .navmenu a.active {
+    background-color: #f0fdfa !important;
+    border-left-color: #0f766e !important;
+  }
+  body.theme-plumbon .mobile-nav-active .navmenu a.active {
+    background-color: #f7fee7 !important;
+    border-left-color: #4d7c0f !important;
   }
 }
-@media (max-width: 576px) {
-  .hero-palur {
-    padding: 60px 0 70px;
-    min-height: 420px;
+
+@media (max-width: 767px) {
+  .section.py-5 {
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
   }
-  .hero-palur h1 {
-    font-size: 1.65rem;
+  .hero-palur {
+    padding: 44px 0 56px;
+    min-height: auto;
+  }
+  .marquee-wrapper,
+  .announcement-bar {
+    font-size: 0.76rem;
+    padding: 6px 12px;
+  }
+  .marquee-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .btn-sm {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 575px) {
+  .topbar-right > a {
+    display: none;
+  }
+  .topbar-right {
+    justify-content: center;
+  }
+  .portal-switcher-gov {
+    width: 100%;
+    justify-content: center;
+    padding: 4px 8px;
+  }
+  .portal-switcher-gov a {
+    padding: 5px 12px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .header .logo {
+    gap: 8px;
+  }
+  .header .logo img {
+    width: 30px !important;
+    height: 34px !important;
+    max-height: 34px !important;
+  }
+  .header .logo img[src*="logo-sukoharjo"] {
+    width: 34px !important;
+  }
+  .header .logo .sitename,
+  .header .sitename {
+    font-size: 0.94rem !important;
+  }
+  .header .logo span.sitename-sub,
+  .header .sitename-sub {
+    font-size: 0.63rem !important;
+  }
+  .header .btn-getstarted {
+    padding: 6px 9px;
+    font-size: 0.74rem;
+    min-height: 36px;
+    margin: 0 4px 0 0;
+  }
+  .header .btn-getstarted i {
+    display: none;
   }
   .stat-card-gov {
     padding: 18px 16px;
