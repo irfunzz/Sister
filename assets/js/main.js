@@ -11,7 +11,9 @@
 
   // Safeguard: Ensure subfolder root has trailing slash so relative links resolve inside the subfolder
   if (window.location.pathname === '/plumbon' || window.location.pathname === '/gadingan') {
-    window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname + '/' + window.location.search + window.location.hash);
+    }
   }
 
   /**

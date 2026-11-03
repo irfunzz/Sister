@@ -5,6 +5,41 @@
   <meta http-equiv="refresh" content="0; url=berita.html">
   <title>Mengarahkan ke Halaman Berita Desa Plumbon...</title>
   <script>window.location.href = "berita.html";</script>
+  <!-- Router Safeguard: Pastikan navigasi subfolder Desa Plumbon konsisten dan tidak escape ke root -->
+  <script>
+    (function() {
+      if (!window.location.protocol.startsWith('http')) return;
+      var p = window.location.pathname;
+      if (p === '/plumbon') {
+        window.history.replaceState(null, '', '/plumbon/' + window.location.search + window.location.hash);
+      }
+      var match = window.location.pathname.match(/^(.*\/plumbon)(?:\/.*)?$/i);
+      var villageBase = match ? match[1] + '/' : '/plumbon/';
+
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        if (e.target.closest('.toggle-dropdown')) return;
+        var href = a.getAttribute('href');
+        if (!href) return;
+        if (
+          href.startsWith('#') ||
+          href.startsWith('http://') ||
+          href.startsWith('https://') ||
+          href.startsWith('//') ||
+          href.startsWith('tel:') ||
+          href.startsWith('mailto:') ||
+          href.startsWith('javascript:') ||
+          href.startsWith('/') ||
+          href.startsWith('../')
+        ) {
+          return;
+        }
+        e.preventDefault();
+        window.location.href = villageBase + href;
+      }, true);
+    })();
+  </script>
 </head>
 <body>
   <p>Mengarahkan ke <a href="berita.html">Halaman Berita Desa Plumbon</a>...</p>

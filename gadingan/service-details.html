@@ -5,6 +5,41 @@
   <meta http-equiv="refresh" content="0; url=pelayanan.html">
   <title>Mengarahkan ke Layanan Warga Desa Gadingan...</title>
   <script>window.location.href = "pelayanan.html";</script>
+  <!-- Router Safeguard: Pastikan navigasi subfolder Desa Gadingan konsisten dan tidak escape ke root -->
+  <script>
+    (function() {
+      if (!window.location.protocol.startsWith('http')) return;
+      var p = window.location.pathname;
+      if (p === '/gadingan') {
+        window.history.replaceState(null, '', '/gadingan/' + window.location.search + window.location.hash);
+      }
+      var match = window.location.pathname.match(/^(.*\/gadingan)(?:\/.*)?$/i);
+      var villageBase = match ? match[1] + '/' : '/gadingan/';
+
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        if (e.target.closest('.toggle-dropdown')) return;
+        var href = a.getAttribute('href');
+        if (!href) return;
+        if (
+          href.startsWith('#') ||
+          href.startsWith('http://') ||
+          href.startsWith('https://') ||
+          href.startsWith('//') ||
+          href.startsWith('tel:') ||
+          href.startsWith('mailto:') ||
+          href.startsWith('javascript:') ||
+          href.startsWith('/') ||
+          href.startsWith('../')
+        ) {
+          return;
+        }
+        e.preventDefault();
+        window.location.href = villageBase + href;
+      }, true);
+    })();
+  </script>
 </head>
 <body>
   <p>Mengarahkan ke <a href="pelayanan.html">Layanan Warga Desa Gadingan</a>...</p>
