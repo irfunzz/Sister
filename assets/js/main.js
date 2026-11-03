@@ -9,6 +9,11 @@
 (function() {
   "use strict";
 
+  // Safeguard: Ensure subfolder root has trailing slash so relative links resolve inside the subfolder
+  if (window.location.pathname === '/plumbon' || window.location.pathname === '/gadingan') {
+    window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
+  }
+
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
